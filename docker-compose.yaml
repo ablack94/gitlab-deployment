@@ -1,0 +1,22 @@
+---
+version: "3.8"
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:16.10.0-ce.0
+    container_name: gitlab
+    restart: unless-stopped
+    ports:
+      - 0.0.0.0:9003:80
+      - 0.0.0.0:2222:2222
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://gitlab.ablack94.dev'
+        nginx['listen_port'] = 80
+        nginx['listen_https'] = false
+        gitlab_rails['gitlab_shell_ssh_port'] = 2222
+    volumes:
+      - /opt/ablack/gitlab/config:/etc/gitlab
+      - /opt/ablack/gitlab/logs:/var/log/gitlab
+      - /opt/ablack/gitlab/data:/var/opt/gitlab
+    shm_size: "256m"
+
