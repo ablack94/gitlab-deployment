@@ -2,7 +2,7 @@
 version: "3.8"
 services:
   gitlab:
-    image: gitlab/gitlab-ce:16.10.0-ce.0
+    image: gitlab/gitlab-ce:16.11.1-ce.0
     container_name: gitlab
     restart: unless-stopped
     ports:
